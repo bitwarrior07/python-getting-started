@@ -1,2 +1,9 @@
 Flask
 gunicorn
+pytesseract
+requests
+opencv-python
+wget
+uuid
+pytesseract
+Pillow
