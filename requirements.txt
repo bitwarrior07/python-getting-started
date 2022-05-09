@@ -7,3 +7,6 @@ wget
 uuid
 pytesseract
 Pillow
+pandas
+numpy
+scikit-learn

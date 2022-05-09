@@ -35,7 +35,6 @@ app = Flask(__name__)
 
 @app.route('/')
 def homepage():
-    disease_prediction.plotPerColumnDistribution()
     return """
     <h1>Hello World! Welcome to bit_warriors_ooty hacks.</h1>
     """
@@ -80,6 +79,19 @@ def extract():
     jsonified_data = jsonify(data)
     return jsonified_data
 
+@app.route('/predict/symptoms', methods=['POST'])
+def predict_body_symptoms():
+    data = {}
+    data['result'] = []
+    symptoms_list = request.get_json()['symptoms']
+    print(disease_prediction.train())
+    print(disease_prediction.test())
+    data['result'].append({"symptoms":symptoms_list})
+    data['result'].append({"prediction":disease_prediction.predict(symptoms_list)})
+    return jsonify(data)
+    return data
+
+
 if __name__ == '__main__':
-    app.run(debug=True, use_reloader=True)
+    app.run(host='127.0.0.1', port=5000,  debug=True)
 
