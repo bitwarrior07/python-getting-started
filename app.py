@@ -1,6 +1,6 @@
 import os
 import importlib
-import ocr
+# import ocr
 import json
 import wget
 import json
