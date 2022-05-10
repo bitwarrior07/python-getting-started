@@ -7,6 +7,7 @@ import json
 import requests
 import uuid
 import logging
+import disease_prediction
 
 from datetime import date, datetime
 from functools import wraps
@@ -34,7 +35,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def homepage():
-
+    disease_prediction.plotPerColumnDistribution()
     return """
     <h1>Hello World! Welcome to bit_warriors_ooty hacks.</h1>
     """
