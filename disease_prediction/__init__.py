@@ -2,9 +2,11 @@ import os
 import pandas as pd
 import numpy as np
 import json
+import disease_prediction.remedies as remedies
 from json import JSONEncoder
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
+
 
 r = RandomForestClassifier()
 
@@ -31,13 +33,17 @@ def test():
 
 def predict(sympotoms_list):
     x_predict_dict = {}
+    data = {}
     for i in range(0,len(data_symptoms_list)):
         if data_symptoms_list[i] in sympotoms_list:
             x_predict_dict[data_symptoms_list[i]] = [1]
         else:
             x_predict_dict[data_symptoms_list[i]] = [0]
-    print(x_predict_dict)
     predict_df = pd.DataFrame.from_dict(x_predict_dict)
     predict_df = predict_df.drop('prognosis', axis=1)
-    return r.predict(predict_df).tolist()
+    data["disease"] = r.predict(predict_df).tolist()
+    s = "".join(data["disease"]).lower()
+
+    data["remedies"] = remedies.remedies[s]
+    return data
 
