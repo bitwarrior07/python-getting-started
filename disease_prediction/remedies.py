@@ -8,6 +8,10 @@ remedies = {"gerd": "Sleep on your left side.\nChew gum.\nElevate the head of yo
     "chicken pox":"Apply calamine lotion.\nServe sugar-free popsicles.\nBathe in oatmeal.\nWear mittens to prevent scratching.",
     "common cold":"Rest. Your body needs rest to heal.\nSoothe a sore throat.\nCombat stuffiness.\nRelieve pain.\nSip warm liquids.",
     "pneumonia":" Rest.\nAntibiotics.\nFluid intake.",
-    "paralysis(brain hemorrhage)":"Surgery"
+    "paralysis(brain hemorrhage)":"Surgery",
+    "dengue":"Fresh guava juice.\nFenugreek seeds.\nImmunity boosting foods",
+    "hypertension":"Reduce your sodium intake.\nDrink less alcohol.\nEat more potassium-rich foods",
+    "jaundice":"1/4 tsp of turmeric powder mixed in a glass of hot water taken 2-3 times a day.",
+    "hypothyroidism":"Sugar-free diet.\nVitamin B.\nGluten-free diet."
      }
     
