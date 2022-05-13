@@ -7,5 +7,7 @@ remedies = {"gerd": "Sleep on your left side.\nChew gum.\nElevate the head of yo
     "malaria":"Grapefruit.\nHoly Basil\nAvoiding Mosquitoes.\nApple Cider Vinegar.\nFever Nut.",
     "chicken pox":"Apply calamine lotion.\nServe sugar-free popsicles.\nBathe in oatmeal.\nWear mittens to prevent scratching.",
     "common cold":"Rest. Your body needs rest to heal.\nSoothe a sore throat.\nCombat stuffiness.\nRelieve pain.\nSip warm liquids.",
-    "pneumonia":" Rest.\nAntibiotics.\nFluid intake." }
+    "pneumonia":" Rest.\nAntibiotics.\nFluid intake.",
+    "paralysis(brain hemorrhage)":"Surgery"
+     }
     
