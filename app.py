@@ -8,6 +8,7 @@ import requests
 import uuid
 import logging
 import disease_prediction
+import bp
 
 from datetime import date, datetime
 from functools import wraps
@@ -90,6 +91,15 @@ def predict_body_symptoms():
     data['result'].append({"prediction":disease_prediction.predict(symptoms_list)})
     return jsonify(data)
     return data
+
+@app.route('/check/bloodpressure', methods=['POST'])
+def check_blood_pressure():
+    bpDict = {}
+    bpDict['systolic'] = 123
+    bpDict['diastolic'] = 456
+    bpDict['result'] = "Your blood pressue is normal."
+    return bpDict
+    # normalreturn bp.checkPressure(bpDict)
 
 
 if __name__ == '__main__':
