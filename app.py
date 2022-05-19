@@ -95,11 +95,11 @@ def predict_body_symptoms():
 @app.route('/check/bloodpressure', methods=['POST'])
 def check_blood_pressure():
     bpDict = {}
-    bpDict['systolic'] = 123
-    bpDict['diastolic'] = 456
+    bpDict['systolic'] = request.form.get('systolic')
+    bpDict['diastolic'] = request.form.get('diastolic')
     bpDict['result'] = "Your blood pressue is normal."
-    # return bpDict
-    return data
+    return bpDict
+    # return data
     # normalreturn bp.checkPressure(bpDict)
 
 
