@@ -94,8 +94,8 @@ def predict_body_symptoms():
 @app.route('/check/bloodpressure', methods=['POST'])
 def check_blood_pressure():
     bpDict = {}
-    bpDict['systolic'] = int(request.form.get('systolic'))
-    bpDict['diastolic'] = int(request.form.get('diastolic'))
+    bpDict['systolic'] = int(request.get_json()['systolic'])
+    bpDict['diastolic'] = int(request.get_json()['diastolic'])
     bpDict['result'] = bp.checkPressure(bpDict)
     return jsonify(bpDict)
 
