@@ -98,7 +98,8 @@ def check_blood_pressure():
     bpDict['systolic'] = 123
     bpDict['diastolic'] = 456
     bpDict['result'] = "Your blood pressue is normal."
-    return bpDict
+    # return bpDict
+    return data
     # normalreturn bp.checkPressure(bpDict)
 
 
