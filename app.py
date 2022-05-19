@@ -90,17 +90,14 @@ def predict_body_symptoms():
     data['result'].append({"symptoms":symptoms_list})
     data['result'].append({"prediction":disease_prediction.predict(symptoms_list)})
     return jsonify(data)
-    return data
 
 @app.route('/check/bloodpressure', methods=['POST'])
 def check_blood_pressure():
     bpDict = {}
-    bpDict['systolic'] = request.form.get('systolic')
-    bpDict['diastolic'] = request.form.get('diastolic')
-    bpDict['result'] = "Your blood pressue is normal."
-    return bpDict
-    # return data
-    # normalreturn bp.checkPressure(bpDict)
+    bpDict['systolic'] = int(request.form.get('systolic'))
+    bpDict['diastolic'] = int(request.form.get('diastolic'))
+    bpDict['result'] = bp.checkPressure(bpDict)
+    return jsonify(bpDict)
 
 
 if __name__ == '__main__':
