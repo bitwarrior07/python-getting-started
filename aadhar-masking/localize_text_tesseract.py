@@ -1,5 +1,6 @@
 # USAGE
-# python __init__.py --image test1.jpeg --min-conf 50
+# python localize_text_tesseract.py --image apple_support.png
+# python localize_text_tesseract.py --image apple_support.png --min-conf 50
 
 # import the necessary packages
 from pytesseract import Output
@@ -59,16 +60,253 @@ for i in range(0, len(results["text"])):
 		data['text'] = text
 		data['coordinates'] = [x, y, x + w, y + h]
 
-		# strip out non-ASCII text so we can draw the text on the image
-		# using OpenCV, then draw a bounding box around the text along
-		# with the text itself
 		if len(text) == 4 and text.isdigit():
-			cv2.rectangle(image, (x, y), (x + w, y + h), (0, 255, 0),cv2.FILLED)
+			cv2.rectangle(image, (x, y), (x + w, y + h), (0, 255, 0), cv2.FILLED)
 			# cv2.putText(image, text, (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX,
 			# 	1.2, (0, 0, 255), 3)
 		data_list.append(data)
+
+		# strip out non-ASCII text so we can draw the text on the image
+		# using OpenCV, then draw a bounding box around the text along
+		# with the text itself
+
+# def checkAadhar(data_list):
+# 	original_str = ''
+# 	for i in data_list:
+# 		if len(text) == 4 and text.isdigit():
+# 			cv2.rectangle(image, (x, y), (x + w, y + h), (0, 255, 0), cv2.FILLED)
+# 		# cv2.putText(image, text, (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX,
+# 		# 	1.2, (0, 0, 255), 3)
+# 			data_list.append(original_str)
+#
+#
+# 	pass
+#checkAadhar(data_list) -> {
+    #     "confidence": 96,
+    #     "text": "9805",
+    #     "coordinates": [
+    #         188,
+    #         333,
+    #         258,
+    #         357
+    #     ]
+    # },
+    # {
+    #     "confidence": 96,
+    #     "text": "8246",
+    #     "coordinates": [
+    #         270,
+    #         332,
+    #         340,
+    #         356
+    #     ]
+    # },
+    # {
+    #     "confidence": 96,
+    #     "text": "7998",
+    #     "coordinates": [
+    #         352,
+    #         331,
+    #         422,
+    #         354
+    #     ]
+    # }
 json_string = json.dumps(data_list)
 print(json_string)
 cv2.imshow("Image", image)
 cv2.imwrite("masked.jpeg", image)
 cv2.waitKey(0)
+
+#TODO
+# [
+#     {
+#         "confidence": 95,
+#         "text": "",
+#         "coordinates": [
+#             5,
+#             0,
+#             626,
+#             84
+#         ]
+#     },
+#     {
+#         "confidence": 65,
+#         "text": "Ig.",
+#         "coordinates": [
+#             240,
+#             89,
+#             253,
+#             104
+#         ]
+#     },
+#     {
+#         "confidence": 35,
+#         "text": "Wierveuthds",
+#         "coordinates": [
+#             266,
+#             85,
+#             350,
+#             104
+#         ]
+#     },
+#     {
+#         "confidence": 86,
+#         "text": "SD",
+#         "coordinates": [
+#             192,
+#             113,
+#             201,
+#             126
+#         ]
+#     },
+#     {
+#         "confidence": 86,
+#         "text": "Yesvanth",
+#         "coordinates": [
+#             226,
+#             112,
+#             299,
+#             125
+#         ]
+#     },
+#     {
+#         "confidence": 96,
+#         "text": "Raja",
+#         "coordinates": [
+#             306,
+#             112,
+#             340,
+#             128
+#         ]
+#     },
+#     {
+#         "confidence": 63,
+#         "text": "wren",
+#         "coordinates": [
+#             257,
+#             146,
+#             295,
+#             164
+#         ]
+#     },
+#     {
+#         "confidence": 89,
+#         "text": "/",
+#         "coordinates": [
+#             303,
+#             147,
+#             305,
+#             159
+#         ]
+#     },
+#     {
+#         "confidence": 91,
+#         "text": "DOB",
+#         "coordinates": [
+#             312,
+#             147,
+#             348,
+#             159
+#         ]
+#     },
+#     {
+#         "confidence": 54,
+#         "text": ":",
+#         "coordinates": [
+#             352,
+#             141,
+#             360,
+#             168
+#         ]
+#     },
+#     {
+#         "confidence": 96,
+#         "text": "07/11/2002",
+#         "coordinates": [
+#             365,
+#             146,
+#             452,
+#             158
+#         ]
+#     },
+#     {
+#         "confidence": 35,
+#         "text": "4,",
+#         "coordinates": [
+#             190,
+#             165,
+#             209,
+#             192
+#         ]
+#     },
+#     {
+#         "confidence": 92,
+#         "text": "/",
+#         "coordinates": [
+#             283,
+#             172,
+#             287,
+#             182
+#         ]
+#     },
+#     {
+#         "confidence": 96,
+#         "text": "Male",
+#         "coordinates": [
+#             293,
+#             171,
+#             330,
+#             183
+#         ]
+#     },
+#     {
+#         "confidence": 96,
+#         "text": "2345",
+#         "coordinates": [
+#             293,
+#             171,
+#             330,
+#             183
+#         ]
+#     },
+#     {
+#         "confidence": 95,
+#         "text": "",
+#         "coordinates": [
+#             20,
+#             102,
+#             626,
+#             321
+#         ]
+#     },
+#     {
+#         "confidence": 96,
+#         "text": "9805",
+#         "coordinates": [
+#             188,
+#             333,
+#             258,
+#             357
+#         ]
+#     },
+#     {
+#         "confidence": 96,
+#         "text": "8246",
+#         "coordinates": [
+#             270,
+#             332,
+#             340,
+#             356
+#         ]
+#     },
+#     {
+#         "confidence": 96,
+#         "text": "7998",
+#         "coordinates": [
+#             352,
+#             331,
+#             422,
+#             354
+#         ]
+#     }
+# ]
