@@ -31,8 +31,7 @@ rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 
 results = pytesseract.image_to_data(rgb, output_type=Output.DICT)
 
-
-data_list = []
+aadhar_data = []
 # loop over each of the individual text localizations
 for i in range(0, len(results["text"])):
 	# extract the bounding box coordinates of the text region from
@@ -48,27 +47,28 @@ for i in range(0, len(results["text"])):
 	conf = int(float(results["conf"][i]))
 	# filter out weak confidence text localizations
 	data = {}
-	aadhar_data = []
 	if conf > args["min_conf"]:
 		text = "".join([c if ord(c) < 128 else "" for c in text]).strip()
-		print(text)
-		# data['confidence'] = conf
-		# data['text'] = text
-		# data['coordinates'] = [x, y, x + w, y + h]
-		data['confidence'] = conf
-		data['text'] = text
-		data['coordinates'] = [x, y, x + w, y + h]
-
-		# strip out non-ASCII text so we can draw the text on the image
-		# using OpenCV, then draw a bounding box around the text along
-		# with the text itself
 		if len(text) == 4 and text.isdigit():
-			cv2.rectangle(image, (x, y), (x + w, y + h), (0, 255, 0),cv2.FILLED)
-			# cv2.putText(image, text, (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX,
-			# 	1.2, (0, 0, 255), 3)
-		data_list.append(data)
-json_string = json.dumps(data_list)
-print(json_string)
+			data['confidence'] = conf
+			data['text'] = text
+			data['x'] = x
+			data['y'] = y
+			data['w'] = w
+			data['h'] = h
+			aadhar_data.append(data)
+		else:
+			if len(aadhar_data) == 1:
+				aadhar_data.pop()
+for i in range(len(aadhar_data)):
+	print(aadhar_data[i])
+	x = aadhar_data[i]['x']
+	y = aadhar_data[i]['y']
+	w = aadhar_data[i]['w']
+	h = aadhar_data[i]['h']
+	cv2.rectangle(image, (x, y), (x + w, y + h), (0, 255, 0), cv2.FILLED)
+# json_string = json.dumps(aadhar_data)
+# print(json_string)
 cv2.imshow("Image", image)
 cv2.imwrite("masked.jpeg", image)
 cv2.waitKey(0)
