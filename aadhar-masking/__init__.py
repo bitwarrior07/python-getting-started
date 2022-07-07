@@ -32,7 +32,7 @@ def is_valid_aadhar_number(aadhar_string):
         return False
 
 
-pytesseract.pytesseract.tesseract_cmd = 'C:/Program Files/Tesseract-OCR/tesseract.exe'
+pytesseract.pytesseract.tesseract_cmd = 'C:\\Program Files\\tesseract.exe'
 
 # construct the argument parser and parse the arguments
 ap = argparse.ArgumentParser()
