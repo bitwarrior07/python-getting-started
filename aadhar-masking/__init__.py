@@ -32,7 +32,7 @@ def is_valid_aadhar_number(aadhar_string):
         return False
 
 
-pytesseract.pytesseract.tesseract_cmd = 'C:\\Program Files\\tesseract.exe'
+pytesseract.pytesseract.tesseract_cmd = 'C:\\Program Files (x86)\\Tesseract-OCR\\tesseract.exe'
 
 # construct the argument parser and parse the arguments
 ap = argparse.ArgumentParser()
@@ -84,16 +84,16 @@ for i in range(0, len(results["text"])):
             if len(aadhar_data) == 1:
                 aadhar_data.pop()
 
+# for i in range(len(aadhar_data)):
+#     aadhar_str = aadhar_str + ' ' + aadhar_data[i]['text']
+
+# print(is_valid_aadhar_number(aadhar_str.strip()))
 for i in range(len(aadhar_data)):
-    aadhar_str = aadhar_str + ' ' + aadhar_data[i]['text']
-print(is_valid_aadhar_number(aadhar_str.strip()))
-if is_valid_aadhar_number(aadhar_str.strip()):
-    for i in range(len(aadhar_data)):
-        x = aadhar_data[i]['x']
-        y = aadhar_data[i]['y']
-        w = aadhar_data[i]['w']
-        h = aadhar_data[i]['h']
-        cv2.rectangle(image, (x, y), (x + w, y + h), (0, 255, 0), cv2.FILLED)
+    x = aadhar_data[i]['x']
+    y = aadhar_data[i]['y']
+    w = aadhar_data[i]['w']
+    h = aadhar_data[i]['h']
+    cv2.rectangle(image, (x, y), (x + w, y + h), (0, 255, 0), cv2.FILLED)
 
 json_string = json.dumps(aadhar_data)
 print(json_string)
